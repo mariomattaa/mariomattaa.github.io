@@ -14,32 +14,41 @@
       --accent:#8E24AA;
     }
 
-    * { box-sizing:border-box; }
+    *{
+      box-sizing:border-box;
+      -webkit-font-smoothing:antialiased;
+    }
 
-    body {
+    body{
       margin:0;
       background-color:var(--bg);
       color:var(--text);
       font-family:system-ui,-apple-system,"Inter","Roboto","Segoe UI",Arial,sans-serif;
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
+      line-height:1.5;
       padding:2rem;
+      display:flex;
+      justify-content:center;
     }
 
-    .card {
+    .page{
+      width:100%;
+      max-width:1200px;
+      display:flex;
+      flex-direction:column;
+      gap:2rem;
+    }
+
+    /* ---- HERO CARD ---- */
+    .heroCard{
       background:var(--panel);
       border:1px solid var(--border);
       border-radius:16px;
-      max-width:480px;
-      width:100%;
       padding:1.5rem 1.5rem 2rem;
-      text-align:center;
+      max-width:480px;
       box-shadow:0 30px 80px rgba(0,0,0,.8);
     }
 
-    .tag {
+    .tag{
       display:inline-block;
       font-size:.7rem;
       font-weight:500;
@@ -51,7 +60,7 @@
       color:var(--text);
     }
 
-    h1 {
+    h1.heroTitle{
       margin:0 0 .75rem;
       font-size:1.3rem;
       font-weight:600;
@@ -60,15 +69,14 @@
       line-height:1.3;
     }
 
-    p {
+    .heroText{
       margin:0 0 1rem;
       font-size:.95rem;
-      line-height:1.5;
       color:var(--sub);
     }
 
-    .sectionTitle {
-      margin-top:2rem;
+    .sectionLabel{
+      margin-top:1.5rem;
       font-size:.75rem;
       font-weight:600;
       text-transform:uppercase;
@@ -76,39 +84,239 @@
       color:var(--accent);
     }
 
-    .footerNote {
-      font-size:.75rem;
-      color:var(--sub);
-      margin-top:1.5rem;
-    }
-
-    .highlight {
+    .contactLine{
       color:#fff;
       font-weight:500;
+      font-size:.9rem;
+      margin:.5rem 0 0;
+      word-break:break-word;
+    }
+
+    .noteSmall{
+      font-size:.75rem;
+      color:var(--sub);
+      margin-top:1rem;
+    }
+
+    /* ---- PROJECT LIST ---- */
+    .projectsBlock{
+      display:flex;
+      flex-direction:column;
+      gap:1rem;
+    }
+
+    .projectsHeader{
+      font-size:.8rem;
+      font-weight:600;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:var(--accent);
+    }
+
+    .projectsGrid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(min(320px,100%),1fr));
+      gap:1rem;
+    }
+
+    .projectCard{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:1rem 1.25rem 1.25rem;
+      display:flex;
+      flex-direction:column;
+      min-height:180px;
+      position:relative;
+      box-shadow:0 20px 60px rgba(0,0,0,.7);
+    }
+
+    .projectName{
+      margin:0 0 .4rem;
+      font-size:1rem;
+      font-weight:600;
+      color:#fff;
+      letter-spacing:-0.02em;
+      line-height:1.35;
+    }
+
+    .projectRole{
+      margin:0 0 .75rem;
+      font-size:.7rem;
+      font-weight:500;
+      line-height:1.4;
+      color:var(--accent);
+      text-transform:uppercase;
+      letter-spacing:.07em;
+    }
+
+    .projectDesc{
+      margin:0 0 1.5rem;
+      font-size:.9rem;
+      color:var(--sub);
+      line-height:1.45;
+    }
+
+    .projectLink{
+      margin-top:auto;
+      font-size:.8rem;
+      font-weight:500;
+      color:#fff;
+      text-decoration:none;
+      display:inline-block;
+      background:rgba(255,255,255,.05);
+      border:1px solid var(--border);
+      border-radius:8px;
+      padding:.5rem .6rem;
+      width:fit-content;
+    }
+
+    .projectLink:hover{
+      background:rgba(255,255,255,.08);
+    }
+
+    /* ---- FOOTER ---- */
+    .footer{
+      font-size:.7rem;
+      color:var(--sub);
+      text-align:center;
+      padding:2rem 0 4rem;
+    }
+
+    @media(min-width:900px){
+      .topRow{
+        display:flex;
+        align-items:flex-start;
+        gap:2rem;
+      }
+      .heroCard{
+        flex-shrink:0;
+      }
+      .projectsBlock{
+        flex:1;
+      }
     }
   </style>
 </head>
 <body>
-  <main class="card">
-    <div class="tag">Portfolio — Work in progress</div>
+  <div class="page">
 
-    <h1>Mario Matta<br/>UI / UX Designer</h1>
+    <!-- TOP: Intro + Projects -->
+    <div class="topRow">
 
-    <p>I design clean interfaces and usable flows for web products. My work focuses on dashboards, admin tools, AI/automation platforms, and internal systems that teams actually use every day.</p>
+      <!-- LEFT: Hero / About / Contact -->
+      <section class="heroCard">
+        <div class="tag">UI / UX Designer</div>
 
-    <p class="sectionTitle">Selected Work (Coming Soon)</p>
-    <p>
-      • AI Operations Dashboard UI<br/>
-      • Call / Ticket Management Flow<br/>
-      • Brand + Identity Samples
-    </p>
+        <h1 class="heroTitle">Mario Matta</h1>
 
-    <p class="sectionTitle">Contact</p>
-    <p class="highlight">[put your email here]</p>
+        <p class="heroText">
+          I design interfaces, flows, and visual systems. My work covers dashboards,
+          admin portals, mobile apps, and branded experiences for real products.
+        </p>
 
-    <div class="footerNote">
-      Full case studies and visuals will be published here.
+        <div class="sectionLabel">Contact</div>
+        <div class="contactLine">[your email here]</div>
+
+        <div class="noteSmall">
+          Full case studies are linked on the right.
+        </div>
+      </section>
+
+      <!-- RIGHT: Project cards -->
+      <section class="projectsBlock">
+        <div class="projectsHeader">Selected Work</div>
+
+        <div class="projectsGrid">
+
+          <!-- LebaDon -->
+          <article class="projectCard">
+            <h2 class="projectName">LebaDon</h2>
+            <p class="projectRole">Web App / Product UI</p>
+            <p class="projectDesc">
+              End-to-end product interface work. Focus on clean layout, clarity,
+              and task flow for real users. Includes styling system, navigation,
+              and core screens.
+            </p>
+            <a class="projectLink" href="lebadon.html">View case study →</a>
+          </article>
+
+          <!-- UA Beans -->
+          <article class="projectCard">
+            <h2 class="projectName">UA Beans</h2>
+            <p class="projectRole">Brand & Experience</p>
+            <p class="projectDesc">
+              Visual identity, voice, and interface direction for a consumer-facing
+              concept. Color, typography, and packaging-style presentation oriented
+              around warmth and story.
+            </p>
+            <a class="projectLink" href="ua-beans.html">View case study →</a>
+          </article>
+
+          <!-- Rekbit -->
+          <article class="projectCard">
+            <h2 class="projectName">Rekbit</h2>
+            <p class="projectRole">Mobile (iOS / Android) + Website</p>
+            <p class="projectDesc">
+              Cross-platform app design and responsive web presence. Consistent look,
+              shared components, and UX patterns adapted for both iOS and Android.
+            </p>
+            <a class="projectLink" href="rekbit.html">View case study →</a>
+          </article>
+
+          <!-- IWE Portal -->
+          <article class="projectCard">
+            <h2 class="projectName">IWE Portal</h2>
+            <p class="projectRole">Internal Operations Dashboard</p>
+            <p class="projectDesc">
+              Dark-mode dashboard for daily operations: calls, agents, reporting,
+              billing. Designed for efficiency and readability during long shifts.
+            </p>
+            <a class="projectLink" href="iwe-portal.html">View case study →</a>
+          </article>
+
+          <!-- QuickBite -->
+          <article class="projectCard">
+            <h2 class="projectName">QuickBite</h2>
+            <p class="projectRole">Ordering Flow / Customer Journey</p>
+            <p class="projectDesc">
+              Fast food ordering experience optimized for speed: item selection,
+              customization, checkout, and confirmation with minimal friction.
+            </p>
+            <a class="projectLink" href="quickbite.html">View case study →</a>
+          </article>
+
+          <!-- Memory Catcher -->
+          <article class="projectCard">
+            <h2 class="projectName">Memory Catcher</h2>
+            <p class="projectRole">Tool UX / Data Capture</p>
+            <p class="projectDesc">
+              UX for capturing, organizing, and recalling information. Focus on clarity,
+              retrieval, and simple mental load instead of “complex settings.”
+            </p>
+            <a class="projectLink" href="memory-catcher.html">View case study →</a>
+          </article>
+
+          <!-- MTJ Production -->
+          <article class="projectCard">
+            <h2 class="projectName">MTJ Production</h2>
+            <p class="projectRole">Brand / Web Presence</p>
+            <p class="projectDesc">
+              Identity and web look for a production brand. Visual direction, layout,
+              and first-impression messaging for credibility and trust.
+            </p>
+            <a class="projectLink" href="mtj-production.html">View case study →</a>
+          </article>
+
+        </div>
+      </section>
     </div>
-  </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      Built by hand. Hosted on GitHub Pages.
+    </footer>
+
+  </div>
 </body>
 </html>
