@@ -6,12 +6,18 @@
   <title>Mario Matta — UI/UX Designer</title>
   <style>
     :root {
-      --bg:#0B0C10;
-      --panel:#0f1116;
-      --text:#EAEFF2;
-      --sub:#B8C1CC;
-      --border:rgba(255,255,255,.08);
-      --accent:#8E24AA;
+      --bg:#1a1a1a;              /* page background */
+      --text-main:#ffffff;        /* main headings */
+      --text-body:#d1d1d1;        /* paragraph text */
+      --card-bg:#2a2a2a;          /* card background / borders */
+      --card-border:rgba(255,255,255,.08);
+      --thumb-bg:#ffffff;         /* screenshot area bg */
+      --footer-bg:#1f1f1f;        /* dark strip under each project card */
+      --accent:#ffffff;
+      --radius-lg:14px;
+      --radius-md:10px;
+      --page-max:1200px;
+      --font-stack:system-ui,-apple-system,"Inter","Roboto","Segoe UI",Arial,sans-serif;
     }
 
     *{
@@ -22,295 +28,282 @@
     body{
       margin:0;
       background-color:var(--bg);
-      color:var(--text);
-      font-family:system-ui,-apple-system,"Inter","Roboto","Segoe UI",Arial,sans-serif;
+      color:var(--text-main);
+      font-family:var(--font-stack);
       line-height:1.5;
-      padding:2rem;
       display:flex;
       justify-content:center;
+      padding:2rem 1.5rem 4rem;
     }
 
     .page{
       width:100%;
-      max-width:1200px;
+      max-width:var(--page-max);
       display:flex;
       flex-direction:column;
       gap:2rem;
     }
 
-    /* ---- HERO CARD ---- */
-    .heroCard{
-      background:var(--panel);
-      border:1px solid var(--border);
-      border-radius:16px;
-      padding:1.5rem 1.5rem 2rem;
-      max-width:480px;
-      box-shadow:0 30px 80px rgba(0,0,0,.8);
+    /* ================= HERO / INTRO ================= */
+
+    .hero{
+      max-width:900px;
     }
 
-    .tag{
-      display:inline-block;
-      font-size:.7rem;
-      font-weight:500;
-      background:rgba(255,255,255,.05);
-      border:1px solid var(--border);
-      border-radius:8px;
-      padding:.4rem .6rem;
-      margin-bottom:1rem;
-      color:var(--text);
-    }
-
-    h1.heroTitle{
-      margin:0 0 .75rem;
-      font-size:1.3rem;
+    .heroTitle{
+      margin:0 0 1rem;
+      font-size:40px;
       font-weight:600;
-      color:#fff;
       letter-spacing:-0.03em;
-      line-height:1.3;
+      color:var(--text-main);
     }
 
     .heroText{
+      font-size:1rem;
+      color:var(--text-body);
       margin:0 0 1rem;
-      font-size:.95rem;
-      color:var(--sub);
+      max-width:900px;
+      line-height:1.6;
     }
 
-    .sectionLabel{
+    .contactBlock{
       margin-top:1.5rem;
-      font-size:.75rem;
+      background-color:var(--card-bg);
+      border:1px solid var(--card-border);
+      border-radius:var(--radius-md);
+      padding:1rem 1rem 1.1rem;
+      max-width:360px;
+    }
+
+    .contactLabel{
+      font-size:.8rem;
       font-weight:600;
+      letter-spacing:.07em;
       text-transform:uppercase;
-      letter-spacing:.08em;
-      color:var(--accent);
+      color:var(--text-main);
+      margin:0 0 .4rem;
     }
 
     .contactLine{
-      color:#fff;
-      font-weight:500;
       font-size:.9rem;
-      margin:.5rem 0 0;
+      color:var(--text-body);
+      margin:0;
       word-break:break-word;
     }
 
-    .noteSmall{
-      font-size:.75rem;
-      color:var(--sub);
-      margin-top:1rem;
-    }
+    /* ================= SECTION HEADER ================= */
 
-    /* ---- PROJECT LIST ---- */
-    .projectsBlock{
-      display:flex;
-      flex-direction:column;
-      gap:1rem;
-    }
-
-    .projectsHeader{
-      font-size:.8rem;
+    .sectionHeader{
+      font-size:30px;
       font-weight:600;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-      color:var(--accent);
+      color:var(--text-main);
+      display:flex;
+      align-items:center;
+      gap:.5rem;
+      margin-top:2rem;
+      margin-bottom:.5rem;
     }
+
+    /* ================= PROJECT GRID ================= */
 
     .projectsGrid{
       display:grid;
-      grid-template-columns:repeat(auto-fill,minmax(min(320px,100%),1fr));
+      grid-template-columns:1fr;
       gap:1rem;
     }
 
+    @media(min-width:700px){
+      .projectsGrid{
+        grid-template-columns:1fr 1fr;
+      }
+    }
+
+    /* card as link */
     .projectCard{
-      background:var(--panel);
-      border:1px solid var(--border);
-      border-radius:14px;
-      padding:1rem 1.25rem 1.25rem;
+      background-color:var(--card-bg);
+      border-radius:var(--radius-lg);
+      border:1px solid var(--card-border);
+      overflow:hidden;
       display:flex;
       flex-direction:column;
-      min-height:180px;
-      position:relative;
+      min-height:250px;
       box-shadow:0 20px 60px rgba(0,0,0,.7);
+      color:var(--text-main);
+      text-decoration:none; /* remove default link underline */
+      cursor:pointer;
     }
 
-    .projectName{
-      margin:0 0 .4rem;
-      font-size:1rem;
-      font-weight:600;
-      color:#fff;
-      letter-spacing:-0.02em;
-      line-height:1.35;
-    }
-
-    .projectRole{
-      margin:0 0 .75rem;
-      font-size:.7rem;
-      font-weight:500;
-      line-height:1.4;
-      color:var(--accent);
-      text-transform:uppercase;
-      letter-spacing:.07em;
-    }
-
-    .projectDesc{
-      margin:0 0 1.5rem;
-      font-size:.9rem;
-      color:var(--sub);
-      line-height:1.45;
-    }
-
-    .projectLink{
-      margin-top:auto;
-      font-size:.8rem;
-      font-weight:500;
-      color:#fff;
+    .projectLinkWrapper{
+      display:flex;
+      flex-direction:column;
+      color:inherit;
       text-decoration:none;
-      display:inline-block;
-      background:rgba(255,255,255,.05);
-      border:1px solid var(--border);
-      border-radius:8px;
-      padding:.5rem .6rem;
-      width:fit-content;
     }
 
-    .projectLink:hover{
-      background:rgba(255,255,255,.08);
+    /* Top area = screenshot / visual */
+    .projectThumb{
+      background-color:var(--thumb-bg);
+      flex:1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:2rem 1rem;
     }
 
-    /* ---- FOOTER ---- */
-    .footer{
-      font-size:.7rem;
-      color:var(--sub);
+    .thumbImage {
+      max-width: 80%;
+      max-height: 160px;
+      border-radius: 10px;
+      box-shadow: 0 20px 40px rgba(0,0,0,.4);
+      object-fit: cover;
+    }
+
+    /* Bottom strip with title */
+    .projectFooter{
+      background-color:var(--footer-bg);
+      border-top:1px solid var(--card-border);
+      padding:.9rem 1rem 1rem;
+      font-size:.9rem;
+      display:flex;
+      align-items:flex-start;
+      gap:.6rem;
+      color:var(--text-main);
+    }
+
+    .projTextBlock{
+      display:flex;
+      flex-direction:column;
+    }
+
+    .projTitle{
+      margin:0;
+      font-weight:600;
+      font-size:17px;
+      line-height:1.4;
+      color:var(--text-main);
+      letter-spacing:-0.02em;
+    }
+
+    .projectCard:hover .projTitle{
+      text-decoration:underline;
+    }
+
+    /* ================= FOOTER TEXT ================= */
+
+    .bottomNote{
+      font-size:.75rem;
+      color:var(--text-body);
       text-align:center;
-      padding:2rem 0 4rem;
-    }
-
-    @media(min-width:900px){
-      .topRow{
-        display:flex;
-        align-items:flex-start;
-        gap:2rem;
-      }
-      .heroCard{
-        flex-shrink:0;
-      }
-      .projectsBlock{
-        flex:1;
-      }
+      margin-top:3rem;
+      margin-bottom:2rem;
     }
   </style>
 </head>
+
 <body>
-  <div class="page">
+  <main class="page">
 
-    <!-- TOP: Intro + Projects -->
-    <div class="topRow">
+    <!-- HERO / INTRO -->
+    <section class="hero">
+      <h1 class="heroTitle">Mario Matta</h1>
 
-      <!-- LEFT: Hero / About / Contact -->
-      <section class="heroCard">
-        <div class="tag">UI / UX Designer</div>
+      <p class="heroText">
+        I'm a UI / UX designer focused on real products — dashboards, internal tools,
+        mobile apps, branded experiences. I design usable flows, clean visual systems,
+        and interfaces teams can actually work with.
+      </p>
 
-        <h1 class="heroTitle">Mario Matta</h1>
+      <p class="heroText">
+        Below is a selection of work. Each project opens into a dedicated page where
+        I explain context, role, decisions, and final UI screens.
+      </p>
 
-        <p class="heroText">
-          I design interfaces, flows, and visual systems. My work covers dashboards,
-          admin portals, mobile apps, and branded experiences for real products.
-        </p>
+      <div class="contactBlock">
+        <p class="contactLabel">Contact</p>
+        <p class="contactLine">+961 3 836 927</p>
+        <p class="contactLine">Mario_matta_505@hotmail.com</p>
+      </div>
+    </section>
 
-        <div class="sectionLabel">Contact</div>
-        <div class="contactLine">Mario_Matta_505@hotmail.com</div>
+    <!-- FEATURED WORK -->
+    <h2 class="sectionHeader">
+      <span>Featured Work</span>
+    </h2>
 
-        <div class="noteSmall">
-          Full case studies are linked on the right.
-        </div>
-      </section>
-
-      <!-- RIGHT: Project cards -->
-      <section class="projectsBlock">
-        <div class="projectsHeader">Selected Work</div>
-
-        <div class="projectsGrid">
-
-          <!-- LebaDon -->
-          <article class="projectCard">
-            <h2 class="projectName">LebaDon</h2>
-            <p class="projectRole">Web App / Product UI</p>
-            <p class="projectDesc">
-              End-to-end product interface work. Focus on clean layout, clarity,
-              and task flow for real users. Includes styling system, navigation,
-              and core screens.
-            </p>
-            <a class="projectLink" href="lebadon.html">View case study →</a>
-          </article>
-
-          <!-- UA Beans -->
-          <article class="projectCard">
-            <h2 class="projectName">UA Beans</h2>
-            <p class="projectRole">Brand & Experience</p>
-            <p class="projectDesc">
-              Visual identity, voice, and interface direction for a consumer-facing
-              concept. Color, typography, and packaging-style presentation oriented
-              around warmth and story.
-            </p>
-            <a class="projectLink" href="ua-beans.html">View case study →</a>
-          </article>
+    <section class="projectsGrid">
 
           <!-- Rekbit -->
-          <article class="projectCard">
-            <h2 class="projectName">Rekbit</h2>
-            <p class="projectRole">Mobile (iOS / Android) + Website</p>
-            <p class="projectDesc">
-              Cross-platform app design and responsive web presence. Consistent look,
-              shared components, and UX patterns adapted for both iOS and Android.
-            </p>
-            <a class="projectLink" href="rekbit.html">View case study →</a>
-          </article>
+      <a class="projectCard projectLinkWrapper" href="rekbit.html">
+        <div class="projectThumb">
+          <img src="images/rekbit-preview.png" class="thumbImage" alt="Rekbit preview">
+        </div>
+        <div class="projectFooter">
+          <div class="projTextBlock">
+            <p class="projTitle">Rekbit</p>
+          </div>
+        </div>
+      </a>
 
           <!-- IWE Portal -->
-          <article class="projectCard">
-            <h2 class="projectName">IWE Portal</h2>
-            <p class="projectRole">Internal Operations Dashboard</p>
-            <p class="projectDesc">
-              Dark-mode dashboard for daily operations: calls, agents, reporting,
-              billing. Designed for efficiency and readability during long shifts.
-            </p>
-            <a class="projectLink" href="iwe-portal.html">View case study →</a>
-          </article>
-
-          <!-- QuickBite -->
-          <article class="projectCard">
-            <h2 class="projectName">QuickBite</h2>
-            <p class="projectRole">Ordering Flow / Customer Journey</p>
-            <p class="projectDesc">
-              Fast food ordering experience optimized for speed: item selection,
-              customization, checkout, and confirmation with minimal friction.
-            </p>
-            <a class="projectLink" href="quickbite.html">View case study →</a>
-          </article>
-
-          <!-- Memory Catcher -->
-          <article class="projectCard">
-            <h2 class="projectName">Memory Catcher</h2>
-            <p class="projectRole">Tool UX / Data Capture</p>
-            <p class="projectDesc">
-              UX for capturing, organizing, and recalling information. Focus on clarity,
-              retrieval, and simple mental load instead of “complex settings.”
-            </p>
-            <a class="projectLink" href="memory-catcher.html">View case study →</a>
-          </article>
-
-          <!-- MTJ Production -->
-          <article class="projectCard">
-            <h2 class="projectName">MTJ Production</h2>
-            <p class="projectRole">Brand / Web Presence</p>
-            <p class="projectDesc">
-              Identity and web look for a production brand. Visual direction, layout,
-              and first-impression messaging for credibility and trust.
-            </p>
-            <a class="projectLink" href="mtj-production.html">View case study →</a>
-          </article>
-
+      <a class="projectCard projectLinkWrapper" href="iwe-portal.html">
+        <div class="projectThumb">
+          <img src="images/iwe-portal-preview.png" class="thumbImage" alt="IWE Portal dashboard preview">
         </div>
-      </section>
-    </div>
-  </div>
+        <div class="projectFooter">
+          <div class="projTextBlock">
+            <p class="projTitle">IWE Portal</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- LebaDon -->
+      <a class="projectCard projectLinkWrapper" href="lebadon.html">
+        <div class="projectThumb">
+          <img src="images/lebadon-preview.png" class="thumbImage" alt="LebaDon preview">
+        </div>
+        <div class="projectFooter">
+          <div class="projTextBlock">
+            <p class="projTitle">LebaDon</p>
+          </div>
+        </div>
+      </a>
+
+                 <!-- Memory Catcher -->
+      <a class="projectCard projectLinkWrapper" href="memory-catcher.html">
+        <div class="projectThumb">
+          <img src="images/memorycatcher-preview.png" class="thumbImage" alt="Memory Catcher preview">
+        </div>
+        <div class="projectFooter">
+          <div class="projTextBlock">
+            <p class="projTitle">Memory Catcher</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- UA Beans -->
+      <a class="projectCard projectLinkWrapper" href="ua-beans.html">
+        <div class="projectThumb">
+          <img src="images/uabeans-preview.png" class="thumbImage" alt="UA Beans preview">
+        </div>
+        <div class="projectFooter">
+          <div class="projTextBlock">
+            <p class="projTitle">UA Beans</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- QuickBite -->
+      <a class="projectCard projectLinkWrapper" href="quickbite.html">
+        <div class="projectThumb">
+          <img src="images/quickbite-preview.png" class="thumbImage" alt="QuickBite preview">
+        </div>
+        <div class="projectFooter">
+          <div class="projTextBlock">
+            <p class="projTitle">QuickBite</p>
+          </div>
+        </div>
+      </a>
+    </section>
+  </main>
 </body>
 </html>
