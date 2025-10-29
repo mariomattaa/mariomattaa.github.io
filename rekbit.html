@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rekbit — Case Study</title>
+  <style>
+    :root {
+      --bg:#1a1a1a;
+      --text-main:#ffffff;
+      --text-body:#d1d1d1;
+      --panel:#2a2a2a;
+      --border:rgba(255,255,255,.08);
+      --radius-lg:14px;
+      --radius-md:10px;
+      --page-max:1200px;
+      --font-stack:system-ui,-apple-system,"Inter","Roboto","Segoe UI",Arial,sans-serif;
+    }
+
+    *{
+      box-sizing:border-box;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    body{
+      margin:0;
+      background-color:var(--bg);
+      color:var(--text-main);
+      font-family:var(--font-stack);
+      line-height:1.5;
+      display:flex;
+      justify-content:center;
+      padding:2rem 1.5rem 4rem;
+    }
+
+    .page{
+      width:100%;
+      max-width:var(--page-max);
+      display:flex;
+      flex-direction:column;
+      gap:2rem;
+    }
+
+    a{
+      color:var(--text-main);
+      text-decoration:none;
+    }
+    a:hover{
+      text-decoration:underline;
+    }
+
+    /* ====== TOP NAV / BACK LINK ====== */
+    .topNav{
+      font-size:.8rem;
+      color:var(--text-body);
+    }
+    .topNav a{
+      color:var(--text-body);
+    }
+    .topNav a:hover{
+      color:var(--text-main);
+    }
+
+    /* ====== HERO / HEADER ====== */
+    .heroHead{
+      display:flex;
+      flex-direction:column;
+      gap:1rem;
+      max-width:900px;
+    }
+
+    .projectTitle{
+      font-size:34px;
+      font-weight:600;
+      letter-spacing:-0.03em;
+      margin:0;
+      color:var(--text-main);
+    }
+
+    .tagRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.5rem;
+    }
+
+    .tagItem{
+      background-color:var(--panel);
+      border:1px solid var(--border);
+      border-radius:var(--radius-md);
+      font-size:.7rem;
+      line-height:1.3;
+      padding:.4rem .6rem;
+      color:var(--text-body);
+      font-weight:500;
+      letter-spacing:.03em;
+    }
+
+    .heroText{
+      font-size:1rem;
+      color:var(--text-body);
+      line-height:1.6;
+      margin:0;
+    }
+
+    /* ====== INFO GRID (Overview / Role / Flow) ====== */
+    .infoGrid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:1rem;
+    }
+    @media(min-width:800px){
+      .infoGrid{
+        grid-template-columns:1fr 1fr 1fr;
+      }
+    }
+
+    .infoBlock{
+      background-color:var(--panel);
+      border:1px solid var(--border);
+      border-radius:var(--radius-md);
+      padding:1rem 1rem 1.1rem;
+    }
+
+    .infoLabel{
+      font-size:.7rem;
+      font-weight:600;
+      text-transform:uppercase;
+      letter-spacing:.07em;
+      color:var(--text-main);
+      margin:0 0 .5rem;
+    }
+
+    .infoBody{
+      margin:0;
+      font-size:.9rem;
+      color:var(--text-body);
+      line-height:1.5;
+    }
+
+    /* ====== SECTION HEADERS ====== */
+    .sectionHeader{
+      font-size:1rem;
+      font-weight:600;
+      color:var(--text-main);
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-top:2rem;
+      margin-bottom:2rem;
+
+    }
+
+    .sectionBody{
+      font-size:.95rem;
+      color:var(--text-body);
+      line-height:1.6;
+      margin:0 0 1rem;
+      max-width:900px;
+    }
+
+    /* ====== FULL-WIDTH SHOTS STYLE ====== */
+
+    /* block that holds one screenshot + caption */
+    .fullShotBlock {
+      display:flex;
+      flex-direction:column;
+      gap:.5rem;
+      margin-bottom:2rem;
+      max-width:1000px;        /* readable width on huge screens */
+      width:100%;
+    }
+
+    /* wrapper around the image */
+    .fullShotWrap {
+      background:#000;
+      border:1px solid var(--border);
+      border-radius:var(--radius-md);
+      overflow:hidden;
+      box-shadow:0 30px 80px rgba(0,0,0,.8);
+    }
+
+    /* the screenshot itself */
+    .fullShotImage {
+      display:block;
+      width:100%;
+      height:auto;
+      object-fit:contain;
+      border-radius:0;
+    }
+
+    /* caption under screenshot */
+    .fullShotCaption {
+      font-size:.8rem;
+      color:var(--text-body);
+      line-height:1.4;
+      max-width:800px;
+    }
+
+    /* ====== FOOTER NOTE ====== */
+    .footNote{
+      font-size:.75rem;
+      color:var(--text-body);
+      text-align:left;
+      max-width:900px;
+      line-height:1.5;
+    }
+
+    /* ====== CONTACT BLOCK ====== */
+    .contactBlock{
+      margin-top:2rem;
+      background-color:var(--panel);
+      border:1px solid var(--border);
+      border-radius:var(--radius-md);
+      padding:1rem 1rem 1.1rem;
+      max-width:360px;
+    }
+    .contactLabel{
+      font-size:.8rem;
+      font-weight:600;
+      letter-spacing:.07em;
+      text-transform:uppercase;
+      color:var(--text-main);
+      margin:0 0 .4rem;
+    }
+    .contactLine{
+      font-size:.9rem;
+      color:var(--text-body);
+      margin:0;
+      word-break:break-word;
+    }
+
+    /* mobile-only screenshot sizing */
+.mobileShotBlock {
+  display:flex;
+  flex-direction:column;
+  gap:.5rem;
+  margin-bottom:2rem;
+  width:100%;
+  align-items:center;        /* center the phone screen */
+  text-align:left;
+}
+
+.mobileShotWrap {
+  background:#000;
+  border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,.8);
+
+  max-width:400px;           /* <- control how big mobile looks */
+  width:100%;
+}
+
+.mobileShotImage {
+  display:block;
+  width:100%;
+  height:auto;
+  object-fit:contain;
+  border-radius:0;
+}
+
+.mobileShotCaption {
+  font-size:.8rem;
+  color:var(--text-body);
+  line-height:1.4;
+  max-width:400px;           /* match the screenshot width */
+}
+
+/* ====== MOBILE SCREEN GRID ====== */
+
+.mobileSectionIntro {
+  max-width:900px;
+  margin:0 0 1.5rem;
+}
+
+.mobileGrid {
+  display:grid;
+  grid-template-columns:1fr;
+  gap:1.5rem;
+  max-width:1000px;
+  width:100%;
+}
+
+@media(min-width:600px){
+  .mobileGrid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+@media(min-width:900px){
+  .mobileGrid{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+
+.mobileCell {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:left;
+  gap:.5rem;
+}
+
+.mobileFrame {
+  background:#000;
+  border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,.8);
+  width:100%;
+  max-width:320px;   /* keeps consistent phone size */
+}
+
+.mobileImg {
+  display:block;
+  width:100%;
+  height:auto;
+  object-fit:contain;
+}
+
+.mobileCaption {
+  font-size:.8rem;
+  color:var(--text-body);
+  line-height:1.4;
+  max-width:320px;
+}
+
+
+
+  </style>
+</head>
+<body>
+  <main class="page">
+
+    <!-- back nav -->
+    <div class="topNav">
+      <a href="index.html">← Back to portfolio</a>
+    </div>
+
+    <!-- HERO -->
+    <header class="heroHead">
+      <h1 class="projectTitle">Rekbit</h1>
+
+      <div class="tagRow">
+        <div class="tagItem">E-commerce UX</div>
+        <div class="tagItem">Mobile App (iOS / Android)</div>
+        <!-- <div class="tagItem">Responsive Web</div> -->
+        <div class="tagItem">Branding</div>
+        <div class="tagItem">University Project</div>
+      </div>
+
+      <p class="heroText">
+        Rekbit is a delivery marketplace concept: browse categories, view products,
+        add to cart, sign in, and complete checkout. I designed the full experience
+        across web and mobile, including interface, and visual identity.
+      </p>
+
+      <p class="heroText">
+        The goal: make ordering fast and familiar. Product cards are simple. Cart and
+        checkout are clean. Branding is consistent across iOS, Android, and desktop so
+        the user always feels like they’re still in the same product.
+      </p>
+    </header>
+
+    <!-- OVERVIEW / ROLE / FLOW
+    <section class="infoGrid">
+
+      <div class="infoBlock">
+        <p class="infoLabel">Overview</p>
+        <p class="infoBody">
+          Full shopping journey: Homepage → Categories → Product detail →
+          Cart → Checkout. Includes account creation and sign-in.
+          Web layout focuses on product density. Mobile layout prioritizes thumb reach.
+        </p>
+      </div>
+
+      <div class="infoBlock">
+        <p class="infoLabel">My Role</p>
+        <p class="infoBody">
+          UI design, UX flow, visual language, layout rules,
+          responsive adaptation, and handoff-ready screens for iOS, Android,
+          and desktop web. Also created the Rekbit logo and color system.
+        </p>
+      </div>
+
+      <div class="infoBlock">
+        <p class="infoLabel">Core Flow</p>
+        <p class="infoBody">
+          1. Explore categories and promo deals<br/>
+          2. View product details and related items<br/>
+          3. Add to cart and review order<br/>
+          4. Sign in / sign up<br/>
+          5. Enter address / payment<br/>
+          6. Confirm order
+        </p>
+      </div>
+
+    </section> -->
+
+    <!-- WEB EXPERIENCE -->
+    <section>
+      <h2 class="sectionHeader">Web Experience</h2>
+
+      <!-- Homepage -->
+      <div class="fullShotBlock">
+        <div class="fullShotWrap">
+          <img src="images/Rekbit/web/rekbit-web-home.png"
+               class="fullShotImage"
+               alt="Rekbit web homepage" />
+        </div>
+        <div class="fullShotCaption">
+          Homepage with hero banner, main categories, and flash deals.
+        </div>
+      </div>
+
+      <!-- Category / products -->
+      <div class="fullShotBlock">
+        <div class="fullShotWrap">
+          <img src="images/Rekbit/web/rekbit-web-category.png"
+               class="fullShotImage"
+               alt="Rekbit web category view" />
+        </div>
+        <div class="fullShotCaption">
+          Category / product list with pricing and “add to cart.”
+        </div>
+      </div>
+
+      <!-- Product detail -->
+      <div class="fullShotBlock">
+        <div class="fullShotWrap">
+          <img src="images/Rekbit/web/rekbit-web-product.png"
+               class="fullShotImage"
+               alt="Rekbit web product detail page" />
+        </div>
+        <div class="fullShotCaption">
+          Product detail page: description, quantity, related products.
+        </div>
+      </div>
+
+      <!-- Sign in -->
+      <div class="fullShotBlock">
+        <div class="fullShotWrap">
+          <img src="images/Rekbit/web/rekbit-web-signin.png"
+               class="fullShotImage"
+               alt="Rekbit web sign-in screen" />
+        </div>
+        <div class="fullShotCaption">
+          Sign In screen. Clean, minimal, with social login options.
+        </div>
+      </div>
+
+      <!-- Sign up -->
+      <div class="fullShotBlock">
+        <div class="fullShotWrap">
+          <img src="images/Rekbit/web/rekbit-web-signup.png"
+               class="fullShotImage"
+               alt="Rekbit web sign-up screen" />
+        </div>
+        <div class="fullShotCaption">
+          Sign Up screen mirrors Sign In for consistency.
+        </div>
+      </div>
+
+      <!-- Cart -->
+      <div class="fullShotBlock">
+        <div class="fullShotWrap">
+          <img src="images/Rekbit/web/rekbit-web-cart.png"
+               class="fullShotImage"
+               alt="Rekbit web cart page" />
+        </div>
+        <div class="fullShotCaption">
+          Cart summary with editable quantities and a clear total.
+        </div>
+      </div>
+
+      <!-- Checkout -->
+      <div class="fullShotBlock">
+        <div class="fullShotWrap">
+          <img src="images/Rekbit/web/rekbit-web-checkout.png"
+               class="fullShotImage"
+               alt="Rekbit web checkout flow" />
+        </div>
+        <div class="fullShotCaption">
+          Checkout: shipping address, payment method, and final order review are split
+          into clear sections.
+        </div>
+      </div>
+
+    </section>
+
+    <!-- MOBILE EXPERIENCE -->
+<section>
+  <h2 class="sectionHeader">Mobile App (iOS / Android)</h2>
+
+  <div class="mobileGrid">
+
+    <!-- Sign In -->
+    <div class="mobileCell">
+      <div class="mobileFrame">
+        <img
+          src="images/Rekbit/mobile android/rekbit-mobile-Sign-In.png"
+          class="mobileImg"
+          alt="Rekbit mobile Sign In"
+        />
+      </div>
+      <div class="mobileCaption">
+        Sign In screen.
+      </div>
+    </div>
+
+    <!-- Sign Up -->
+    <div class="mobileCell">
+      <div class="mobileFrame">
+        <img
+          src="images/Rekbit/mobile android/rekbit-mobile-Sign-Up.png"
+          class="mobileImg"
+          alt="Rekbit mobile Sign Up"
+        />
+      </div>
+      <div class="mobileCaption">
+        Sign Up screen.
+      </div>
+    </div>
+
+    <!-- Welcome / onboarding -->
+    <div class="mobileCell">
+      <div class="mobileFrame">
+        <img
+          src="images/Rekbit/mobile android/rekbit-mobile-welcome.png"
+          class="mobileImg"
+          alt="Rekbit mobile welcome / onboarding screens"
+        />
+      </div>
+      <div class="mobileCaption">
+        Welcome / onboarding.
+      </div>
+    </div>
+
+    <!-- Categories -->
+    <div class="mobileCell">
+      <div class="mobileFrame">
+        <img
+          src="images/Rekbit/mobile android/rekbit-mobile-categories.png"
+          class="mobileImg"
+          alt="Rekbit mobile category view"
+        />
+      </div>
+      <div class="mobileCaption">
+        Categories with icons and promos.
+      </div>
+    </div>
+
+    <!-- Products -->
+    <div class="mobileCell">
+      <div class="mobileFrame">
+        <img
+          src="images/Rekbit/mobile android/rekbit-mobile-products.png"
+          class="mobileImg"
+          alt="Rekbit mobile product listing"
+        />
+      </div>
+      <div class="mobileCaption">
+        Product list with price, volume, and promo tags.
+      </div>
+    </div>
+
+    <!-- Cart -->
+    <div class="mobileCell">
+      <div class="mobileFrame">
+        <img
+          src="images/Rekbit/mobile android/rekbit-mobile-cart.png"
+          class="mobileImg"
+          alt="Rekbit mobile cart view"
+        />
+      </div>
+      <div class="mobileCaption">
+        Cart view with clean totals and quick quantity edits.
+      </div>
+    </div>
+
+
+
+    <!-- Checkout step 1 -->
+    <div class="mobileCell">
+      <div class="mobileFrame">
+        <img
+          src="images/Rekbit/mobile android/rekbit-mobile-checkout1.png"
+          class="mobileImg"
+          alt="Rekbit mobile checkout - Shipping"
+        />
+      </div>
+      <div class="mobileCaption">
+        Checkout step 1 — Shipping Address.
+      </div>
+    </div>
+
+    <!-- Checkout step 2 -->
+    <div class="mobileCell">
+      <div class="mobileFrame">
+        <img
+          src="images/Rekbit/mobile android/rekbit-mobile-checkout2.png"
+          class="mobileImg"
+          alt="Rekbit mobile checkout - Payment"
+        />
+      </div>
+      <div class="mobileCaption">
+        Checkout step 2 — Payment.
+      </div>
+    </div>
+
+    <!-- Checkout step 3 -->
+    <div class="mobileCell">
+      <div class="mobileFrame">
+        <img
+          src="images/Rekbit/mobile android/rekbit-mobile-checkout3.png"
+          class="mobileImg"
+          alt="Rekbit mobile checkout - Review"
+        />
+      </div>
+      <div class="mobileCaption">
+        Checkout step 3 — Review & confirm.
+      </div>
+    </div>
+
+        <!-- Product details -->
+    <div class="mobileCell">
+      <div class="mobileFrame">
+        <img
+          src="images/Rekbit/mobile android/rekbit-mobile-product-details.png"
+          class="mobileImg"
+          alt="Rekbit mobile product details"
+        />
+      </div>
+      <div class="mobileCaption">
+        Product detail with description, related items, and add-to-cart.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+    <!-- WHY THIS MATTERS -->
+    <section>
+      <h2 class="sectionHeader">Why this project matters</h2>
+      <p class="sectionBody">
+        Rekbit was built as a university project, but I approached it like a real
+        product. Instead of just drawing screens, I treated it as an end-to-end
+        service: branding, marketplace UX, cart behavior, and final checkout logic.
+      </p>
+
+      <p class="sectionBody">
+        The result is a full ecosystem — not just pretty UI. There’s a consistent
+        brand voice, a responsive web layout for desktop, and a mobile experience
+        that respects actual usage (late-night, one-hand, fast checkout).
+      </p>
+    </section>
+  </main>
+</body>
+</html>
