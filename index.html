@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mario Matta — UI/UX Designer</title>
+  <style>
+    :root {
+      --bg:#0B0C10;
+      --panel:#0f1116;
+      --text:#EAEFF2;
+      --sub:#B8C1CC;
+      --border:rgba(255,255,255,.08);
+      --accent:#8E24AA;
+    }
+
+    * { box-sizing:border-box; }
+
+    body {
+      margin:0;
+      background-color:var(--bg);
+      color:var(--text);
+      font-family:system-ui,-apple-system,"Inter","Roboto","Segoe UI",Arial,sans-serif;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:2rem;
+    }
+
+    .card {
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:16px;
+      max-width:480px;
+      width:100%;
+      padding:1.5rem 1.5rem 2rem;
+      text-align:center;
+      box-shadow:0 30px 80px rgba(0,0,0,.8);
+    }
+
+    .tag {
+      display:inline-block;
+      font-size:.7rem;
+      font-weight:500;
+      background:rgba(255,255,255,.05);
+      border:1px solid var(--border);
+      border-radius:8px;
+      padding:.4rem .6rem;
+      margin-bottom:1rem;
+      color:var(--text);
+    }
+
+    h1 {
+      margin:0 0 .75rem;
+      font-size:1.3rem;
+      font-weight:600;
+      color:#fff;
+      letter-spacing:-0.03em;
+      line-height:1.3;
+    }
+
+    p {
+      margin:0 0 1rem;
+      font-size:.95rem;
+      line-height:1.5;
+      color:var(--sub);
+    }
+
+    .sectionTitle {
+      margin-top:2rem;
+      font-size:.75rem;
+      font-weight:600;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:var(--accent);
+    }
+
+    .footerNote {
+      font-size:.75rem;
+      color:var(--sub);
+      margin-top:1.5rem;
+    }
+
+    .highlight {
+      color:#fff;
+      font-weight:500;
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="tag">Portfolio — Work in progress</div>
+
+    <h1>Mario Matta<br/>UI / UX Designer</h1>
+
+    <p>I design clean interfaces and usable flows for web products. My work focuses on dashboards, admin tools, AI/automation platforms, and internal systems that teams actually use every day.</p>
+
+    <p class="sectionTitle">Selected Work (Coming Soon)</p>
+    <p>
+      • AI Operations Dashboard UI<br/>
+      • Call / Ticket Management Flow<br/>
+      • Brand + Identity Samples
+    </p>
+
+    <p class="sectionTitle">Contact</p>
+    <p class="highlight">[put your email here]</p>
+
+    <div class="footerNote">
+      Full case studies and visuals will be published here.
+    </div>
+  </main>
+</body>
+</html>
