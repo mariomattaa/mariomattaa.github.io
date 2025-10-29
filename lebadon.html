@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LebaDon — Case Study</title>
+  <style>
+    :root {
+      --bg:#1a1a1a;
+      --text-main:#ffffff;
+      --text-body:#d1d1d1;
+      --panel:#2a2a2a;
+      --border:rgba(255,255,255,.08);
+      --radius-lg:14px;
+      --radius-md:10px;
+      --page-max:1200px;
+      --font-stack:system-ui,-apple-system,"Inter","Roboto","Segoe UI",Arial,sans-serif;
+    }
+
+    *{
+      box-sizing:border-box;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    body{
+      margin:0;
+      background-color:var(--bg);
+      color:var(--text-main);
+      font-family:var(--font-stack);
+      line-height:1.5;
+      display:flex;
+      justify-content:center;
+      padding:2rem 1.5rem 4rem;
+    }
+
+    .page{
+      width:100%;
+      max-width:var(--page-max);
+      display:flex;
+      flex-direction:column;
+      gap:2rem;
+    }
+
+    a{
+      color:var(--text-main);
+      text-decoration:none;
+    }
+    a:hover{
+      text-decoration:underline;
+    }
+
+    /* ====== TOP NAV / BACK LINK ====== */
+    .topNav{
+      font-size:.8rem;
+      color:var(--text-body);
+    }
+    .topNav a{
+      color:var(--text-body);
+    }
+    .topNav a:hover{
+      color:var(--text-main);
+    }
+
+    /* ====== HERO / HEADER ====== */
+    .heroHead{
+      display:flex;
+      flex-direction:column;
+      gap:1rem;
+      max-width:900px;
+    }
+
+    .projectTitle{
+      font-size:34px;
+      font-weight:600;
+      letter-spacing:-0.03em;
+      margin:0;
+      color:var(--text-main);
+    }
+
+    .tagRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.5rem;
+    }
+
+    .tagItem{
+      background-color:var(--panel);
+      border:1px solid var(--border);
+      border-radius:var(--radius-md);
+      font-size:.7rem;
+      line-height:1.3;
+      padding:.4rem .6rem;
+      color:var(--text-body);
+      font-weight:500;
+      letter-spacing:.03em;
+    }
+
+    .heroText{
+      font-size:1rem;
+      color:var(--text-body);
+      line-height:1.6;
+      margin:0;
+    }
+
+    /* ====== INFO GRID (Overview / Role / Flow) ====== */
+    .infoGrid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:1rem;
+    }
+    @media(min-width:800px){
+      .infoGrid{
+        grid-template-columns:1fr 1fr 1fr;
+      }
+    }
+
+    .infoBlock{
+      background-color:var(--panel);
+      border:1px solid var(--border);
+      border-radius:var(--radius-md);
+      padding:1rem 1rem 1.1rem;
+    }
+
+    .infoLabel{
+      font-size:.7rem;
+      font-weight:600;
+      text-transform:uppercase;
+      letter-spacing:.07em;
+      color:var(--text-main);
+      margin:0 0 .5rem;
+    }
+
+    .infoBody{
+      margin:0;
+      font-size:.9rem;
+      color:var(--text-body);
+      line-height:1.5;
+    }
+
+    /* ====== SECTION HEADERS ====== */
+    .sectionHeader{
+      font-size:1rem;
+      font-weight:600;
+      color:var(--text-main);
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-top:2rem;
+      margin-bottom:2rem;
+    }
+
+    .sectionBody{
+      font-size:.95rem;
+      color:var(--text-body);
+      line-height:1.6;
+      margin:0 0 1rem;
+      max-width:900px;
+    }
+
+    /* ====== FULL-WIDTH SHOTS STYLE ====== */
+
+    .fullShotBlock {
+      display:flex;
+      flex-direction:column;
+      gap:.5rem;
+      margin-bottom:2rem;
+      max-width:1000px;
+      width:100%;
+    }
+
+    .fullShotWrap {
+      background:#000;
+      border:1px solid var(--border);
+      border-radius:var(--radius-md);
+      overflow:hidden;
+      box-shadow:0 30px 80px rgba(0,0,0,.8);
+    }
+
+    .fullShotImage {
+      display:block;
+      width:100%;
+      height:auto;
+      object-fit:contain;
+      border-radius:0;
+    }
+
+    .fullShotCaption {
+      font-size:.8rem;
+      color:var(--text-body);
+      line-height:1.4;
+      max-width:800px;
+    }
+
+    /* ====== CONTACT BLOCK ====== */
+    .contactBlock{
+      margin-top:2rem;
+      background-color:var(--panel);
+      border:1px solid var(--border);
+      border-radius:var(--radius-md);
+      padding:1rem 1rem 1.1rem;
+      max-width:360px;
+    }
+    .contactLabel{
+      font-size:.8rem;
+      font-weight:600;
+      letter-spacing:.07em;
+      text-transform:uppercase;
+      color:var(--text-main);
+      margin:0 0 .4rem;
+    }
+    .contactLine{
+      font-size:.9rem;
+      color:var(--text-body);
+      margin:0;
+      word-break:break-word;
+    }
+
+  </style>
+</head>
+<body>
+  <main class="page">
+
+    <!-- back nav -->
+    <div class="topNav">
+      <a href="index.html">← Back to portfolio</a>
+    </div>
+
+    <!-- HERO -->
+    <header class="heroHead">
+      <h1 class="projectTitle">LebaDon</h1>
+
+      <div class="tagRow">
+        <div class="tagItem">Donations / Crowdfunding UX</div>
+        <div class="tagItem">Web Platform</div>
+        <div class="tagItem">End-to-End Flow</div>
+        <div class="tagItem">Branding</div>
+        <div class="tagItem">University Project</div>
+      </div>
+
+      <p class="heroText">
+        LebaDon is a donation platform inspired by GoFundMe: users can browse
+        active fundraisers, read the story behind each cause, and contribute
+        directly. You can also create your own fundraiser with a goal, images,
+        and description.
+      </p>
+
+      <p class="heroText">
+        I designed the full flow for web: onboarding, browsing campaigns,
+        viewing a fundraiser, and creating a new campaign. The goal was to make
+        giving feel trustworthy and creating a fundraiser feel simple, not
+        technical.
+      </p>
+    </header>
+
+    <!-- PRODUCT STORY / SCREENS -->
+    <section>
+      <h2 class="sectionHeader">Platform Screens (Web)</h2>
+
+      <!-- Sign In -->
+      <div class="fullShotBlock">
+        <div class="fullShotWrap">
+          <img src="images/LebaDon/lebadon-signin.png"
+               class="fullShotImage"
+               alt="LebaDon web sign in" />
+        </div>
+        <div class="fullShotCaption">
+          Sign In screen. Minimal fields, social login support, “remember me.”
+          The tone is reassuring — not aggressive, not corporate.
+        </div>
+      </div>
+
+      <!-- Sign Up -->
+      <div class="fullShotBlock">
+        <div class="fullShotWrap">
+          <img src="images/LebaDon/lebadon-signup.png"
+               class="fullShotImage"
+               alt="LebaDon web sign up" />
+        </div>
+        <div class="fullShotCaption">
+          Sign Up screen. Same visual language as Sign In for consistency.
+          The goal is to get you into the platform quickly so you can either donate
+          or start your own fundraiser.
+        </div>
+      </div>
+
+      <!-- Homepage / Browse -->
+      <div class="fullShotBlock">
+        <div class="fullShotWrap">
+          <img src="images/LebaDon/lebadon-home.png"
+               class="fullShotImage"
+               alt="LebaDon web homepage" />
+        </div>
+        <div class="fullShotCaption">
+          Homepage. Featured fundraisers and categories are surfaced first so
+          urgent causes don’t get buried. Cards show title, amount raised, and
+          short description.
+        </div>
+      </div>
+
+      <!-- Fundraiser detail page -->
+      <div class="fullShotBlock">
+        <div class="fullShotWrap">
+          <img src="images/LebaDon/lebadon-fundraiser.png"
+               class="fullShotImage"
+               alt="Individual fundraiser page" />
+        </div>
+        <div class="fullShotCaption">
+          Fundraiser detail page. Longer story, images, progress toward goal,
+          and a clear Donate CTA. The layout is built to make the fundraiser feel
+          human and legitimate, not scammy.
+        </div>
+      </div>
+
+      <!-- Create fundraiser -->
+      <div class="fullShotBlock">
+        <div class="fullShotWrap">
+          <img src="images/LebaDon/lebadon-create.png"
+               class="fullShotImage"
+               alt="Create fundraiser screen" />
+        </div>
+        <div class="fullShotCaption">
+          Create a fundraiser. The form walks you through title,
+          target amount, story, and cover image. The priority was approachability:
+          “you don’t need to know marketing to ask for help.”
+        </div>
+      </div>
+
+    </section>
+
+    <!-- WHY THIS MATTERS -->
+    <section>
+      <h2 class="sectionHeader">Why this project matters</h2>
+      <p class="sectionBody">
+        LebaDon was also a university project, but I treated it like a live product:
+        real money, real urgency, and sensitive situations. The main challenge was
+        balancing emotion with clarity — it has to feel personal, but still feel safe
+        to donate.
+      </p>
+
+      <p class="sectionBody">
+        This project shows that I can design not just shopping flows (like Rekbit),
+        but also trust-driven flows: onboarding, credibility, story, and conversion.
+      </p>
+    </section>
+  </main>
+</body>
+</html>
